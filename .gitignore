@@ -68,3 +68,15 @@ testem.log
 # System files
 .DS_Store
 Thumbs.db
+
+node_modules/
+www/
+dist/
+.sourcemaps/
+platforms/
+plugins/
+/config.xml
+.idea/
+.vscode/
+*.log
+
