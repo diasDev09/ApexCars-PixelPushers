@@ -1,82 +1,52 @@
-# Specifies intentionally untracked files to ignore when using Git
-# http://git-scm.com/docs/gitignore
-
+# Temporary files
 *~
-*.sw[mnpcod]
-.tmp
 *.tmp
-*.tmp.*
-UserInterfaceState.xcuserstate
-$RECYCLE.BIN/
-
 *.log
+tmp/
 log.txt
 
-
-/.sourcemaps
-/.versions
-/coverage
-
-# Ionic
-/.ionic
-/www
-/platforms
-/plugins
-
-# Compiled output
-/dist
-/tmp
-/out-tsc
-/bazel-out
-
 # Node
-/node_modules
-npm-debug.log
-yarn-error.log
+node_modules/
+npm-debug.log*
+yarn-error.log*
 
-# IDEs and editors
+# Angular / Ionic
+.angular/
+.angular/cache/
+.ionic/
+dist/
+www/
+coverage/
+out-tsc/
+bazel-out/
+.sourcemaps/
+
+# Capacitor / Mobile
+android/.gradle/
+android/local.properties
+ios/App/Pods/
+
+# IDEs
 .idea/
 .project
 .classpath
 .c9/
-*.launch
 .settings/
-*.sublime-project
-*.sublime-workspace
+.history/
 
-# Visual Studio Code
+# VSCode
 .vscode/*
 !.vscode/settings.json
 !.vscode/tasks.json
 !.vscode/launch.json
 !.vscode/extensions.json
-.history/*
 
-
-# Miscellaneous
-/.angular
-/.angular/cache
+# Cache
 .sass-cache/
-/.nx
-/.nx/cache
-/connect.lock
-/coverage
-/libpeerconnection.log
-testem.log
-/typings
+.nx/
+.nx/cache/
 
 # System files
 .DS_Store
 Thumbs.db
-
-node_modules/
-www/
-dist/
-.sourcemaps/
-platforms/
-plugins/
-/config.xml
-.idea/
-.vscode/
-*.log
-
+$RECYCLE.BIN/
