@@ -1,2 +1,69 @@
-# Apex-Ve-culos---Pixel-Pushers
-O aplicativo simula uma plataforma de catálogo automotivo, permitindo que usuários naveguem por diferentes veículos, visualizem detalhes específicos e acompanhem informações relevantes de forma dinâmica e responsiva.
+# 🚗 Apex Cars
+
+Aplicativo mobile desenvolvido com **Ionic + Angular Standalone** pela equipe **Pixel Pushers**.
+
+O projeto consiste em uma plataforma mobile para visualização e consulta de veículos, utilizando consumo de API REST, navegação dinâmica entre páginas e recursos modernos do Angular.
+
+---
+
+# 👨‍💻 Equipe — Pixel Pushers
+
+## 👥 Colaboradores
+
+<p align="center">
+  <a href="https://github.com/arielyllopes">
+    <img src="https://github.com/arielyllopes.png" width="70px" alt="@arielyllopes" />
+  </a>
+  <a href="https://github.com/anthonygg081">
+    <img src="https://github.com/anthonygg081.png" width="70px" alt="@anthonygg081" />
+  </a>
+  <a href="https://github.com/diasDev09">
+    <img src="https://github.com/diasDev09.png" width="70px" alt="@diasDev09" />
+  </a>
+</p>
+
+<p align="center">
+  <a href="https://github.com/arielyllopes"><b>@arielyllopes</b></a> •
+  <a href="https://github.com/anthonygg081"><b>@anthonygg081</b></a> •
+  <a href="https://github.com/diasDev09"><b>@diasDev09</b></a>
+</p>
+
+---
+
+# 📱 Tecnologias Utilizadas
+
+- Ionic Framework
+- Angular Standalone
+- TypeScript
+- HTML5
+- SCSS/CSS
+- Angular HttpClient
+- Angular Router
+
+---
+
+# 🎯 Objetivo do Projeto
+
+Desenvolver um aplicativo mobile funcional e estilizado utilizando Ionic + Angular, aplicando conceitos vistos em aula como:
+
+- Consumo de API
+- Services
+- Pipes
+- Diretivas
+- Navegação entre páginas
+- Componentização
+- Estrutura Angular Standalone
+
+---
+
+# 📂 Estrutura do Projeto
+
+```bash
+src/
+ ├── app/
+ │    ├── home/
+ │    ├── detalhes/
+ │    ├── services/
+ │    ├── pipes/
+ │    ├── directives/
+ │    └── models/
