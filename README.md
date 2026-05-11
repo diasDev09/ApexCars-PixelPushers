@@ -10,19 +10,19 @@ O projeto consiste em uma plataforma mobile para visualização e consulta de ve
 
 <p align="center">
   <a href="https://github.com/arielyllopes">
-    <img src="https://github.com/arielyllopes.png" width="70px" alt="@arielyllopes" />
+    <img src="https://github.com/arielyllopes.png" width="70px" alt="@arielyllopes" style="margin: 0 10px;" />
   </a>
   <a href="https://github.com/anthonygg081">
-    <img src="https://github.com/anthonygg081.png" width="70px" alt="@anthonygg081" />
+    <img src="https://github.com/anthonygg081.png" width="70px" alt="@anthonygg081" style="margin: 0 10px;" />
   </a>
   <a href="https://github.com/diasDev09">
-    <img src="https://github.com/diasDev09.png" width="70px" alt="@diasDev09" />
+    <img src="https://github.com/diasDev09.png" width="70px" alt="@diasDev09" style="margin: 0 10px;" />
   </a>
   <a href="https://github.com/MarcoViniciDev">
-    <img src="https://github.com/MarcoViniciDev.png" width="70px" alt="@MarcoViniciDev" />
+    <img src="https://github.com/MarcoViniciDev.png" width="70px" alt="@MarcoViniciDev" style="margin: 0 10px;" />
   </a>
   <a href="https://github.com/juaozinh1">
-    <img src="https://github.com/juaozinh1.png" width="70px" alt="@juaozinh1" />
+    <img src="https://github.com/juaozinh1.png" width="70px" alt="@juaozinh1" style="margin: 0 10px;" />
   </a>
 </p>
 
