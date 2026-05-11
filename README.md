@@ -8,8 +8,6 @@ O projeto consiste em uma plataforma mobile para visualização e consulta de ve
 
 # 👨‍💻 Equipe — Pixel Pushers
 
-## 👥 Colaboradores
-
 <p align="center">
   <a href="https://github.com/arielyllopes">
     <img src="https://github.com/arielyllopes.png" width="70px" alt="@arielyllopes" />
@@ -20,12 +18,20 @@ O projeto consiste em uma plataforma mobile para visualização e consulta de ve
   <a href="https://github.com/diasDev09">
     <img src="https://github.com/diasDev09.png" width="70px" alt="@diasDev09" />
   </a>
+  <a href="https://github.com/MarcoViniciDev">
+    <img src="https://github.com/MarcoViniciDev.png" width="70px" alt="@MarcoViniciDev" />
+  </a>
+  <a href="https://github.com/juaozinh1">
+    <img src="https://github.com/juaozinh1.png" width="70px" alt="@juaozinh1" />
+  </a>
 </p>
 
 <p align="center">
   <a href="https://github.com/arielyllopes"><b>@arielyllopes</b></a> •
   <a href="https://github.com/anthonygg081"><b>@anthonygg081</b></a> •
-  <a href="https://github.com/diasDev09"><b>@diasDev09</b></a>
+  <a href="https://github.com/diasDev09"><b>@diasDev09</b></a>•
+  <a href="https://github.com/MarcoViniciDev"><b>@MarcoViniciDev</b></a>•
+  <a href="https://github.com/juaozinh1"><b>@juaozinh1</b></a>
 </p>
 
 ---
