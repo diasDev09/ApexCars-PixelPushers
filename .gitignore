@@ -45,6 +45,10 @@ ios/App/Pods/
 .sass-cache/
 .nx/
 .nx/cache/
+*.tsbuildinfo
+
+# Environment
+.env
 
 # System files
 .DS_Store
