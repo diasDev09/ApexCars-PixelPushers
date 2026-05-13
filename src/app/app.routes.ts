@@ -10,4 +10,10 @@ export const routes: Routes = [
     redirectTo: 'home',
     pathMatch: 'full',
   },
+  {
+    // rota com parâmetro
+    // :marcaId e :modeloId serão capturados no ActivatedRoute
+    path: 'detalhes/:marcaId/:modeloId',
+    loadComponent: () => import('./detalhes/detalhes.page').then( m => m.DetalhesPage)
+  },
 ];
