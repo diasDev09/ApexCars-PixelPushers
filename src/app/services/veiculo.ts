@@ -1,43 +1,65 @@
-import { Injectable, inject } from '@angular/core';
+import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
+import { Observable } from 'rxjs';
+
+// Importamos todas as interfaces que criamos no models
+import { Marca, ModeloResponse, Ano, VeiculoDetalhe } from '../models/veiculo.model';
 
 @Injectable({
-  providedIn: 'root' // uma única instância para o app inteiro (singleton)
+  providedIn: 'root' // Isso registra o service como singleton em todo o app
 })
 export class VeiculoService {
 
-  // URL base da FIPE API — definida aqui para não repetir em cada método
-  private readonly baseUrl = 'https://parallelum.com.br/fipe/api/v1';
+  // URL base da API pública da FIPE — sem proxy, sem localhost
+  private readonly BASE_URL = 'https://parallelum.com.br/fipe/api/v1';
 
-  // inject() busca o HttpClient que foi registrado no main.ts com provideHttpClient()
-  private http = inject(HttpClient);
+  // O HttpClient é injetado automaticamente pelo Angular
+  constructor(private http: HttpClient) {}
 
-  // Passo 1: retorna todas as marcas disponíveis
-  // ex: [{ codigo: "1", nome: "Acura" }, { codigo: "2", nome: "Agrale" }, ...]
-  getMarcas() {
-    return this.http.get<any[]>(`${this.baseUrl}/marcas`);
+  /**
+   * Busca todas as marcas de carros disponíveis na FIPE.
+   * Endpoint: GET /carros/marcas
+   * Retorna: Observable<Marca[]> — uma lista de { codigo, nome }
+   */
+  getMarcas(): Observable<Marca[]> {
+    return this.http.get<Marca[]>(`${this.BASE_URL}/carros/marcas`);
   }
 
-  // Passo 2: dado o código de uma marca, retorna seus modelos
-  // ex: getMarcas() retornou código "59" para Volkswagen
-  //     getModelos("59") retorna todos os modelos da VW
-  getModelos(codigoMarca: string) {
-    return this.http.get<any>(`${this.baseUrl}/marcas/${codigoMarca}/modelos`);
-  }
-
-  // Passo 3: dado marca + modelo, retorna os anos disponíveis
-  // você vai precisar desses anos para chegar ao valor final
-  getAnos(codigoMarca: string, codigoModelo: string) {
-    return this.http.get<any[]>(
-      `${this.baseUrl}/marcas/${codigoMarca}/modelos/${codigoModelo}/anos`
+  /**
+   * Busca os modelos de uma marca específica.
+   * Endpoint: GET /carros/marcas/{marca}/modelos
+   * Retorna: Observable<ModeloResponse> — objeto com { modelos[], anos[] }
+   */
+  getModelos(codigoMarca: string): Observable<ModeloResponse> {
+    return this.http.get<ModeloResponse>(
+      `${this.BASE_URL}/carros/marcas/${codigoMarca}/modelos`
     );
   }
 
-  // Passo 4: com marca + modelo + ano, retorna o valor FIPE completo
-  // esse é o método que vai alimentar a página de detalhes
-  getValor(codigoMarca: string, codigoModelo: string, codigoAno: string) {
-    return this.http.get<any>(
-      `${this.baseUrl}/marcas/${codigoMarca}/modelos/${codigoModelo}/anos/${codigoAno}`
+  /**
+   * Busca os anos disponíveis para um modelo específico.
+   * Endpoint: GET /carros/marcas/{marca}/modelos/{modelo}/anos
+   * Retorna: Observable<Ano[]> — lista de { codigo, nome }
+   */
+  getAnos(codigoMarca: string, codigoModelo: number): Observable<Ano[]> {
+    return this.http.get<Ano[]>(
+      `${this.BASE_URL}/carros/marcas/${codigoMarca}/modelos/${codigoModelo}/anos`
+    );
+  }
+
+  /**
+   * Busca o detalhe completo do veículo, incluindo o valor FIPE.
+   * Este é o endpoint final da cascata.
+   * Endpoint: GET /carros/marcas/{marca}/modelos/{modelo}/anos/{ano}
+   * Retorna: Observable<VeiculoDetalhe> — objeto completo com Valor, Marca, etc.
+   */
+  getDetalhe(
+    codigoMarca: string,
+    codigoModelo: number,
+    codigoAno: string
+  ): Observable<VeiculoDetalhe> {
+    return this.http.get<VeiculoDetalhe>(
+      `${this.BASE_URL}/carros/marcas/${codigoMarca}/modelos/${codigoModelo}/anos/${codigoAno}`
     );
   }
 }

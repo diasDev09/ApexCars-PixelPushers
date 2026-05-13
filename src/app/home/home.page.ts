@@ -12,15 +12,12 @@ import { inject } from '@angular/core';
 })
 
 export class HomePage implements OnInit {
-
-   // inject() pede ao Angular o VeiculoService que foi registrado com providedIn: 'root'
-  private veiculoService = inject(VeiculoService);
+  constructor(private veiculoService: VeiculoService) {}
 
   ngOnInit() {
-    // se o HttpClient estiver configurado corretamente, isso vai imprimir
-    // a lista de marcas da FIPE no console do browser
-    this.veiculoService.getMarcas().subscribe(marcas => {
-      console.log(marcas); // confirma que a FIPE API está respondendo
+    this.veiculoService.getMarcas().subscribe({
+      next: (marcas) => console.log('Marcas recebidas:', marcas),
+      error: (err) => console.error('Erro:', err)
     });
   }
 }
