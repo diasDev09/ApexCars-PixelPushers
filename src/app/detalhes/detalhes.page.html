@@ -1,13 +1,91 @@
-<ion-header [translucent]="true">
-  <ion-toolbar>
-    <ion-title>detalhes</ion-title>
+<ion-header>
+  <ion-toolbar color="primary">
+    <ion-buttons slot="start">
+      <ion-back-button defaultHref="/home"></ion-back-button>
+    </ion-buttons>
+    <ion-title>Detalhes do Veículo</ion-title>
   </ion-toolbar>
 </ion-header>
 
-<ion-content [fullscreen]="true">
-  <ion-header collapse="condense">
-    <ion-toolbar>
-      <ion-title size="large">detalhes</ion-title>
-    </ion-toolbar>
-  </ion-header>
+<ion-content class="ion-padding">
+
+  @if (carregando) {
+    <ion-skeleton-text animated style="height: 200px; border-radius: 8px;"></ion-skeleton-text>
+    <ion-skeleton-text animated style="width: 70%; margin-top: 16px;"></ion-skeleton-text>
+    <ion-skeleton-text animated style="width: 50%;"></ion-skeleton-text>
+  } @else {
+
+    <!-- Seletor de modelo: ion-select gera um picker nativo no mobile -->
+    <ion-item>
+      <ion-label>Selecione o modelo</ion-label>
+      <ion-select placeholder="Escolha..." (ionChange)="selecionarModelo($event)">
+        @for (modelo of modelos; track modelo.codigo) {
+          <ion-select-option [value]="modelo.codigo">
+            {{ modelo.nome }}
+          </ion-select-option>
+        }
+      </ion-select>
+    </ion-item>
+
+    <!-- O @if abaixo só aparece depois que o usuário escolheu um modelo -->
+    @if (detalhe) {
+
+      <!-- Imagem do veículo -->
+      @if (imagemUrl) {
+        <img [src]="imagemUrl"
+             [alt]="detalhe.Modelo"
+             style="width:100%; height:200px; object-fit:cover; border-radius:8px; margin-top:16px;">
+      }
+
+      <!-- Card com as informações FIPE -->
+      <ion-card style="margin-top: 16px;">
+        <ion-card-header>
+          <ion-card-subtitle>{{ detalhe.Marca }}</ion-card-subtitle>
+          <!-- TitleCasePipe builtin: "gol 1.0" vira "Gol 1.0" -->
+          <ion-card-title>{{ detalhe.Modelo | titlecase }}</ion-card-title>
+        </ion-card-header>
+
+        <ion-card-content>
+          <ion-list lines="none">
+            <ion-item>
+              <ion-label>
+                <p>Preço FIPE</p>
+                <!-- MoedaBrPipe customizado — cobre o Req 4 de pipe personalizado -->
+                <h2>{{ detalhe.Valor | moedaBr }}</h2>
+              </ion-label>
+            </ion-item>
+            <ion-item>
+              <ion-label>
+                <p>Ano de referência</p>
+                <h3>{{ detalhe.AnoModelo }}</h3>
+              </ion-label>
+            </ion-item>
+            <ion-item>
+              <ion-label>
+                <p>Combustível</p>
+                <h3>{{ detalhe.Combustivel }}</h3>
+              </ion-label>
+            </ion-item>
+            <ion-item>
+              <ion-label>
+                <p>Código FIPE</p>
+                <h3>{{ detalhe.CodigoFipe }}</h3>
+              </ion-label>
+            </ion-item>
+          </ion-list>
+        </ion-card-content>
+      </ion-card>
+
+    } @else {
+      <!-- Estado vazio: nenhum modelo selecionado ainda -->
+      <div class="ion-text-center ion-padding" style="margin-top: 40px;">
+        <ion-icon name="car-outline" size="large" color="medium"></ion-icon>
+        <p style="color: var(--ion-color-medium); margin-top: 8px;">
+          Selecione um modelo para ver os detalhes
+        </p>
+      </div>
+    }
+
+  }
+
 </ion-content>

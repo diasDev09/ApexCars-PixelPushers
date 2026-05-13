@@ -11,9 +11,8 @@ export const routes: Routes = [
     pathMatch: 'full',
   },
   {
-    // rota com parâmetro
-    // :marcaId e :modeloId serão capturados no ActivatedRoute
-    path: 'detalhes/:marcaId/:modeloId',
+    // O ':codigoMarca' é o parâmetro dinâmico — o valor real vai na URL
+    path: 'detalhes/:codigoMarca',
     loadComponent: () => import('./detalhes/detalhes.page').then( m => m.DetalhesPage)
   },
 ];

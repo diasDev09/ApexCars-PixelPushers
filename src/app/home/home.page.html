@@ -1,20 +1,54 @@
-<ion-header [translucent]="true">
-  <ion-toolbar>
-    <ion-title>
-      Blank
-    </ion-title>
+
+<ion-header>
+  <ion-toolbar color="primary">
+    <ion-title>Tabela FIPE</ion-title>
   </ion-toolbar>
 </ion-header>
 
-<ion-content [fullscreen]="true">
-  <ion-header collapse="condense">
-    <ion-toolbar>
-      <ion-title size="large">Blank</ion-title>
-    </ion-toolbar>
-  </ion-header>
+<ion-content class="ion-padding">
 
-  <div id="container">
-    <strong>Ready to create an app?</strong>
-    <p>Start with Ionic <a target="_blank" rel="noopener noreferrer" href="https://ionicframework.com/docs/components">UI Components</a></p>
-  </div>
+  <!-- A searchbar chama filtrar() a cada mudança de valor -->
+  <ion-searchbar
+    placeholder="Buscar marca..."
+    (ionInput)="filtrar($event)"
+    animated>
+  </ion-searchbar>
+
+  <!-- @if controla o que aparece: skeleton durante loading, lista quando pronto -->
+  @if (carregando) {
+
+    <!-- Skeleton: mostra 6 cards fantasmas para o usuário perceber que algo virá -->
+    @for (item of [1,2,3,4,5,6]; track item) {
+      <ion-card>
+        <ion-skeleton-text animated style="height: 140px;"></ion-skeleton-text>
+        <ion-card-header>
+          <ion-skeleton-text animated style="width: 60%;"></ion-skeleton-text>
+        </ion-card-header>
+      </ion-card>
+    }
+
+  } @else {
+
+    <!-- @if para o estado vazio (busca sem resultado) -->
+    @if (marcasFiltradas.length === 0) {
+      <div class="ion-text-center ion-padding">
+        <ion-icon name="car-outline" size="large"></ion-icon>
+        <p>Nenhuma marca encontrada.</p>
+      </div>
+    }
+
+    <!-- @for itera sobre a lista filtrada — cada item precisa de um 'track' único -->
+    @for (item of marcasFiltradas; track item.marca.codigo) {
+      <ion-card button (click)="abrirMarca(item.marca)">
+        <img [src]="item.imagemUrl" alt="{{ item.marca.nome }}" style="height:140px; object-fit:cover; width:100%;">
+        <ion-card-header>
+          <!-- UpperCasePipe builtin — cobre o Req 4 de pipes -->
+          <ion-card-title>{{ item.marca.nome | uppercase }}</ion-card-title>
+          <ion-card-subtitle>Ver modelos →</ion-card-subtitle>
+        </ion-card-header>
+      </ion-card>
+    }
+
+  }
+
 </ion-content>

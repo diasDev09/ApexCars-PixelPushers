@@ -1,9 +1,10 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
+import { map } from 'rxjs/operators';
 
 // Importamos todas as interfaces que criamos no models
-import { Marca, ModeloResponse, Ano, VeiculoDetalhe } from '../models/veiculo.model';
+import { Marca, Modelo, ModeloResponse, Ano, VeiculoDetalhe } from '../models/veiculo.model';
 
 @Injectable({
   providedIn: 'root' // Isso registra o service como singleton em todo o app
@@ -30,9 +31,11 @@ export class VeiculoService {
    * Endpoint: GET /carros/marcas/{marca}/modelos
    * Retorna: Observable<ModeloResponse> — objeto com { modelos[], anos[] }
    */
-  getModelos(codigoMarca: string): Observable<ModeloResponse> {
-    return this.http.get<ModeloResponse>(
-      `${this.BASE_URL}/carros/marcas/${codigoMarca}/modelos`
+  getModelos(marcaCodigo: string): Observable<Modelo[]> {
+  return this.http
+    .get<ModeloResponse>(`${this.BASE_URL}/carros/marcas/${marcaCodigo}/modelos`)
+    .pipe(
+      map(response => response.modelos) // 👈 extrai o array
     );
   }
 
@@ -61,5 +64,11 @@ export class VeiculoService {
     return this.http.get<VeiculoDetalhe>(
       `${this.BASE_URL}/carros/marcas/${codigoMarca}/modelos/${codigoModelo}/anos/${codigoAno}`
     );
+  }
+
+  getValor(marca: string, modelo: string, ano: string): Observable<VeiculoDetalhe> {
+  return this.http.get<VeiculoDetalhe>(
+    `${this.BASE_URL}/carros/marcas/${marca}/modelos/${modelo}/anos/${ano}`
+  );
   }
 }
